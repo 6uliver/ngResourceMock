@@ -261,6 +261,16 @@ describe('ngResourceMock', function() {
     var instanceListener = {
       success: function() {}
     };
+    it('flushes with promise', function() {
+      TestResource.whenQuery().resolve([expectedResult]);
+      spyOn(listener, 'success');
+
+      TestResource.query().$promise.then(listener.success);
+
+      expect(listener.success).not.toHaveBeenCalled();
+      TestResource.flush();
+      expect(listener.success).toHaveBeenCalledTimes(1);
+    });
     it('flushes multiple requests', function() {
       TestResource.whenSave().resolve(expectedResult);
       TestResource.whenSave().resolve(expectedResult);
