@@ -64,6 +64,7 @@
 				angular.forEach(this.$unresolvedExpectations, function(expectation) {
 					expectation.resolve();
 				});
+				$rootScope.$apply();
 			};
 
 			ResourceMock.flushAll = function() {
@@ -71,6 +72,7 @@
 				angular.forEach(this.$instances, function(instance) {
 					instance.flush();
 				});
+				$rootScope.$apply();
 			};
 			angular.forEach(actions, function(action, name) {
 				addWhen(action, name);
