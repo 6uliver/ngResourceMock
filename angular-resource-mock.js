@@ -43,6 +43,7 @@
 			ResourceMock.null = {};
 			ResourceMock.undefined = {};
 			ResourceMock.$instances = [];
+			ResourceMock.url = url;
 
 			function init() {
 				this.$when = {};
@@ -177,7 +178,7 @@
 						return this.$when[name][idx];
 					}
 				}
-				throw new Error("Unexpeced " + name);
+				throw new Error("Unexpected " + name + " on url " + ResourceMock.url);
 			}
 
 			function parseArguments(actionName, argumentList) {
